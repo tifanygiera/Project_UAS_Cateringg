@@ -1,4 +1,4 @@
-import 'package:project_uas_ketering/models/catering.dart';
+import 'package:Project_UAS_Cateringg/models/catering.dart';
 
 var catringList = [
   Catering(
@@ -9,7 +9,8 @@ var catringList = [
     type: 'makanan diet',
     imageAsset: 'images/ayam_asam_manis ',
     imageUrls: [
-      'https://ibb.co/jhj7zDh',
+      'https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1024/https://www.flokq.com/blog/wp-content/uploads/2020/09/healthy-cate-1024x768.jpg',
+      ''
     ],
     isFavorite: false,
 

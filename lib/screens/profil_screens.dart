@@ -11,7 +11,8 @@ class _ProfilScreenState extends State<ProfilScreen> {
   bool isSignedIn = false;
   String fullName = '';
   String userName = '';
-  int favoriteCatering Count = 0;
+  int favoriteCeteringCount = 0;
+  int favoriteCateringCount = 0;
 
   // TODO: 5. Implementasi fungsi singin
   void signIn () {

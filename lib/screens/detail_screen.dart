@@ -1,7 +1,7 @@
 import "package:cached_network_image/cached_network_image.dart";
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:project_uas_ketering/models/catering.dart';
+import 'package:Project_UAS_Cateringg/models/catering.dart';
 
 import '';
 class  DetailScreen extends StatefulWidget {
@@ -149,7 +149,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   Container(
                     height: 100,
                     child: Text(
-                      'Candi Borobudur, candi Buddha terbesar di dunia, dibangun oleh penganut Buddha Mahayana pada abad ke-9 di Jawa Tengah, Indonesia. Dengan enam teras dan tiga pelataran melingkar yang dihiasi relief dan arca Buddha, Borobudur adalah tempat suci untuk memuliakan Buddha dan panduan ziarah menuju percerahan. Meskipun ditinggalkan pada abad ke-10, candi ini ditemukan Kembali pada tahun 1814 dan setelah pemugaran besar-besaran, diakui sebagai Situs Warisan Dunia oleh UNESCO.',
+                      'Makanan Catering, Catering Kami hadir sebagai penyelamat Anda dari belenggu dapur! Kami menyediakan beragam menu lezat, siap mengantar ke meja maupun pesanan dalam bentuk orderan, tanpa perlu bersusah payah berbelanja, memasak, dan membersihkan.',
                       style: TextStyle(
                         fontSize: 14,
                       ),
