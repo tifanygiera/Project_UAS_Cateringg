@@ -4,6 +4,7 @@ class Catering {
   final String description;
   final String type;
   final String imageAsset;
+  final List<String> imageUrls;
   bool isFavorite;
 
   Catering({
@@ -12,6 +13,7 @@ class Catering {
     required this.description,
     required this.type,
     required this.imageAsset,
+    required this.imageUrls,
     this.isFavorite = false,
   });
 
