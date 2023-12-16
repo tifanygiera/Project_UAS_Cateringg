@@ -1,4 +1,5 @@
 import "package:cached_network_image/cached_network_image.dart";
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Project_UAS_Cateringg/models/catering.dart';
@@ -114,7 +115,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   //info tegah
                   SizedBox(height: 16,),
                   Row(children: [
-                    Icon(Icons.place, color: Colors.red,),
+                    Icon(CupertinoIcons.money_dollar, size: 30.0, color: CupertinoColors.activeGreen),
                     SizedBox(width: 8,),
                     SizedBox(width: 70,
                       child: Text('Harga', style: TextStyle(
