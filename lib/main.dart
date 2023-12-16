@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-     home : ProfilScreen(),
-      //home: DetailScreen(catering:catringList[0]),
+     //home : ProfilScreen(),
+      home: DetailScreen(catering:catringList[0]),
       //home: SignInScreen(),
        //home : SearchScreen(),
     );
@@ -105,11 +105,11 @@ class MyApp extends StatelessWidget {
 //
 //   }
 // }
+
+// class ScreenArguments {
+//   final String title;
+//   final String message;
 //
-// // class ScreenArguments {
-// //   final String title;
-// //   final String message;
-// //
-// //   ScreenArguments(this.title, this.message);
-// // }
-//
+//   ScreenArguments(this.title, this.message);
+// }
+
