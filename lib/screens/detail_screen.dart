@@ -149,7 +149,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   Container(
                     height: 100,
                     child: Text(
-                      'Makanan Caering, Catering Kami hadir sebagai penyelamat Anda dari belenggu dapur! Kami menyediakan beragam menu lezat, siap mengantar ke meja maupun pesanan dalam bentuk orderan, tanpa perlu bersusah payah berbelanja, memasak, dan membersihkan.',
+                      'Makanan Catering, Catering Kami hadir sebagai penyelamat Anda dari belenggu dapur! Kami menyediakan beragam menu lezat, siap mengantar ke meja maupun pesanan dalam bentuk orderan, tanpa perlu bersusah payah berbelanja, memasak, dan membersihkan.',
                       style: TextStyle(
                         fontSize: 14,
                       ),
