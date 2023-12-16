@@ -23,8 +23,8 @@ class _ProfilScreenState extends State<ProfilScreen> {
   void signOut () {
     setState(() {
       isSignedIn = !isSignedIn;
-    });
-  }
+    });  }
+
 
   @override
   Widget build(BuildContext context) {
