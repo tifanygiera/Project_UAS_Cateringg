@@ -7,9 +7,10 @@ var catringList = [
     description:
     'Grilled salmon with red rice, Grilled salmon with red rice merupakan menu diet sehat yang berbahan ikan salmon dan juga nasi merah yang menjadi kombinasi yang sesuai untuk kebutuhan orang yang sedang menjalani hidup sehat atau diet',
     type: 'makanan diet',
-    imageAsset: 'images/ayam_asam_manis',
+    imageAsset: 'images/ayam_asam_manis ',
     imageUrls: [
-      'https://ibb.co/jhj7zDh',
+      'https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1024/https://www.flokq.com/blog/wp-content/uploads/2020/09/healthy-cate-1024x768.jpg',
+      ''
     ],
     isFavorite: false,
 
