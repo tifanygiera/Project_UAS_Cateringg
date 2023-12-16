@@ -54,7 +54,7 @@ class _SearchScreenState extends State<SearchScreen> {
               itemBuilder: (context, index){
                 final catering = _filteredCatering[index];
                 return Card(
-                  margin: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
