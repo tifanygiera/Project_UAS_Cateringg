@@ -1,7 +1,7 @@
 import "package:cached_network_image/cached_network_image.dart";
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:project_uas_ketering/models/catering.dart';
+import 'package:Project_UAS_Cateringg/models/catering.dart';
 
 import '';
 class  DetailScreen extends StatefulWidget {

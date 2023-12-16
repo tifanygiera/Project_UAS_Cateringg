@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_uas_ketering/screens/detail_screen.dart';
+import 'package:Project_UAS_Cateringg/screens/detail_screen.dart';
 
 import '../models/catering.dart';
 

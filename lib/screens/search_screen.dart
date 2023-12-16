@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_uas_ketering/data/catering_data.dart';
-import 'package:project_uas_ketering/models/catering.dart';
+import 'package:Project_UAS_Cateringg/data/catering_data.dart';
+import 'package:Project_UAS_Cateringg/models/catering.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

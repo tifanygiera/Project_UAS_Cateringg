@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_uas_ketering/data/catering_data.dart';
-import 'package:project_uas_ketering/widgets/item_card.dart';
+import 'package:Project_UAS_Cateringg/data/catering_data.dart';
+import 'package:Project_UAS_Cateringg/widgets/item_card.dart';
 
 import '../models/catering.dart';
 

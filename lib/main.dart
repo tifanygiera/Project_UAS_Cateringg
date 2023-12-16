@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:project_uas_ketering/data/catering_data.dart';
-import 'package:project_uas_ketering/screens/detail_screen.dart';
-import 'package:project_uas_ketering/screens/favorite_screen.dart';
-import 'package:project_uas_ketering/screens/home_screen.dart';
-import 'package:project_uas_ketering/screens/profil_screens.dart';
-import 'package:project_uas_ketering/screens/search_screen.dart';
-import 'package:project_uas_ketering/screens/signIn_screen.dart';
-import 'package:project_uas_ketering/screens/signUp_screen.dart';
+import 'package:Project_UAS_Cateringg/data/catering_data.dart';
+import 'package:Project_UAS_Cateringg/screens/detail_screen.dart';
+import 'package:Project_UAS_Cateringg/screens/favorite_screen.dart';
+import 'package:Project_UAS_Cateringg/screens/home_screen.dart';
+import 'package:Project_UAS_Cateringg/screens/profil_screens.dart';
+import 'package:Project_UAS_Cateringg/screens/search_screen.dart';
+import 'package:Project_UAS_Cateringg/screens/signIn_screen.dart';
+import 'package:Project_UAS_Cateringg/screens/signUp_screen.dart';
 
 
 void main() {
