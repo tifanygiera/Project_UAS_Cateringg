@@ -115,21 +115,12 @@ class _DetailScreenState extends State<DetailScreen> {
                   //info tegah
                   SizedBox(height: 16,),
                   Row(children: [
-                    Icon(CupertinoIcons.money_dollar, size: 30.0, color: CupertinoColors.activeGreen),
+                    Icon(CupertinoIcons.money_dollar, size: 25.0, color: CupertinoColors.activeGreen),
                     SizedBox(width: 8,),
                     SizedBox(width: 70,
                       child: Text('Harga', style: TextStyle(
                           fontWeight: FontWeight.bold),),),
                     Text(': ${widget.catering.harga}',),
-                  ],),
-
-                  Row(children: [
-                    Icon(Icons.house, color: Colors.green,),
-                    SizedBox(width: 8,),
-                    SizedBox(width: 70,
-                      child: Text('Tipe', style: TextStyle(
-                        fontWeight: FontWeight.bold,),),),
-                    Text(': ${widget.catering.type}'),
                   ],),
                   SizedBox(height: 16,),
                   Divider(color: Colors.pinkAccent.shade100,),

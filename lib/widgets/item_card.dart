@@ -60,10 +60,6 @@ class ItemCard extends StatelessWidget {
                 left: 16,
                 bottom: 8,
               ),
-              child: Text(catering.type,
-                style: TextStyle(
-                  fontSize: 12,
-                ),),
             ),
           ],
         ),
