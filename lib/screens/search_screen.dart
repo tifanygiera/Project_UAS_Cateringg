@@ -39,7 +39,7 @@ class _SearchScreenState extends State<SearchScreen> {
               child: TextField(
                 autofocus: false,
                 decoration: InputDecoration(
-                    hintText: 'Cari Menu...',
+                    hintText: 'Cari Menu Catering...',
                     prefixIcon: Icon(Icons.search),
                     border: InputBorder.none,
                     focusedBorder: OutlineInputBorder(

@@ -22,6 +22,14 @@ class _HomeScreenState extends State<HomeScreen> {
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.pinkAccent,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search, color: Colors.white),
+            onPressed: () {
+              // Add your search functionality here
+            },
+          ),
+        ],
       ),
       // TODO : 2. Body dengan gridview.builder
       body: GridView.builder(
