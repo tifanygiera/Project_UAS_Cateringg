@@ -136,7 +136,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     children: [
                       Text(
                         'Deskripsi', style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
                       ),
@@ -144,7 +144,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   ),
                   SizedBox(height: 16,),
                   Container(
-                    height: 100,
+                    height: 150,
                     child: Text(
                         widget.catering.description,
                         style: TextStyle(

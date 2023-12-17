@@ -18,6 +18,7 @@ class MainScreen extends StatefulWidget {
 
   @override
   State createState() => _MainScreenState();
+
 }
 
 class _MainScreenState extends State {
@@ -80,6 +81,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         title: 'Catering',
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
@@ -98,7 +100,12 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         //home: SignUpScreen()
-      home: SearchScreen(),
+      //home: SignInScreen()
+      //home: SearchScreen(),
+      //home: ProfilScreen(),
+      //home: HomeScreen(),
+      home: FavoriteScreen(),
+      //home: DetailScreen(catering: catringList[6]),
     );
   }
 }

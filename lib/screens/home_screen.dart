@@ -16,7 +16,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // TODO : 1. Buat appBar dengan judul Catering
-      appBar: AppBar(title: Text('Catering'),),
+      appBar: AppBar(
+        title: Text(
+          'Menu Catering',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.pinkAccent,
+      ),
       // TODO : 2. Body dengan gridview.builder
       body: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
