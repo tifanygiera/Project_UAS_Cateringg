@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // TODO : 1. Buat appBar dengan judul wisata candi
+      // TODO : 1. Buat appBar dengan judul Catering
       appBar: AppBar(title: Text('Catering'),),
       // TODO : 2. Body dengan gridview.builder
       body: GridView.builder(
@@ -26,8 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
           itemCount: catringList.length,
           // TODO : 3. Buat Itemcard sebagai return dari gridview.builder
           itemBuilder: (context, index){
-            Catering candi = catringList[index];
-            return ItemCard(catering:candi);
+            Catering catering = catringList[index];
+            return ItemCard(catering:catering);
           }),
 
     );

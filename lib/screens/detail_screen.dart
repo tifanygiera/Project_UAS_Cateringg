@@ -55,7 +55,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset('${widget.catering.imageAsset}',
                       width: double.infinity,
-                      height: 200,
+                      height: 300,
                       fit: BoxFit.cover,),
                   ),
                 ),
@@ -97,7 +97,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       Text(
                         widget.catering.name,
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -115,15 +115,18 @@ class _DetailScreenState extends State<DetailScreen> {
                   //info tegah
                   SizedBox(height: 16,),
                   Row(children: [
-                    Icon(CupertinoIcons.money_dollar, size: 20.0, color: CupertinoColors.activeGreen),
                     SizedBox(width: 8,),
                     SizedBox(width: 70,
                       child: Text('Harga', style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 20,
                           color: Colors.red,
                           fontWeight: FontWeight.bold),),),
-                    Text(': ${widget.catering.harga}',),
-                  ],),
+                    Text(
+                      widget.catering.harga,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold)
+                    ),],),
                   SizedBox(height: 16,),
                   Divider(color: Colors.pinkAccent.shade100,),
                   SizedBox(height: 16,),
@@ -133,7 +136,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     children: [
                       Text(
                         'Deskripsi', style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                       ),
@@ -143,12 +146,12 @@ class _DetailScreenState extends State<DetailScreen> {
                   Container(
                     height: 100,
                     child: Text(
-                      'Makanan Catering, Catering Kami hadir sebagai penyelamat Anda dari belenggu dapur! Kami menyediakan beragam menu lezat, siap mengantar ke meja maupun pesanan dalam bentuk orderan, tanpa perlu bersusah payah berbelanja, memasak, dan membersihkan.',
-                      style: TextStyle(
-                        fontSize: 14,
-                      ),
-                      textAlign: TextAlign.left,
+                        widget.catering.description,
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.normal)
                     ),
+
                   ),
                 ],
               ),

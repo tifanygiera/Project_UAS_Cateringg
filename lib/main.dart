@@ -13,104 +13,92 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Menu Catering',
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          iconTheme: IconThemeData(color: Colors.pinkAccent),
-          titleTextStyle: TextStyle(
-            color: Colors.pinkAccent,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pinkAccent).copyWith(
-          primary: Colors.pinkAccent,
-          surface: Colors.pinkAccent[50],
-        ),
-        useMaterial3: true,
-      ),
-     //home : ProfilScreen(),
-      //home: DetailScreen(catering:catringList[0]),
-      //home: SignInScreen(),
-       //home : SearchScreen(),
-    );
-  }
-}
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
-  // TODO : 1. Deklerasikan variabel
+class _MainScreenState extends State {
+// TODO: 1. Deklarasikan variable
   int _currentIndex = 0;
-  final List<Widget> _children = [
+  final List _children = [
     HomeScreen(),
     SearchScreen(),
     FavoriteScreen(),
-    ProfilScreen(),
+    ProfilScreen()
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // TODO : 2. Buat Properti body berupa widget yang ditampilkan
+// TODO: 2. Buat properti body berupa widget yang ditampilkan
       body: _children[_currentIndex],
-      // TODO : 3. Buat properti bottomNavigationBar dengan nilai theme
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-            canvasColor: Colors.deepPurple[50]
-        ),
+// TODO: 3. Buat properti bottomNavigationBar dengan nilai Theme
+      bottomNavigationBar: Theme(data: Theme.of(context).copyWith(
+          canvasColor: Colors.pinkAccent[50]),
         child: BottomNavigationBar(
           currentIndex: _currentIndex,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home, color: Colors.deepPurple,),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search, color: Colors.deepPurple,),
-              label: 'Search',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite, color: Colors.deepPurple,),
-              label: 'Favorite',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person, color: Colors.deepPurple,),
-              label: 'Profile',
-            ),
-          ],
           onTap: (index){
             setState(() {
               _currentIndex = index;
             });
           },
-          selectedItemColor: Colors.deepPurple,
-          unselectedItemColor: Colors.deepPurple[100],
-          showSelectedLabels: true,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home, color: Colors.pinkAccent,),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search, color: Colors.pinkAccent,),
+              label: 'Search',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite, color: Colors.pinkAccent,),
+              label: 'Favorite',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person, color: Colors.pinkAccent,),
+              label: 'Person',
+            ),
+          ],
+          selectedItemColor: Colors.pinkAccent,
+          unselectedItemColor: Colors.pinkAccent[100],
           showUnselectedLabels: true,
-        ),
-      ),
-      // TODO : 4. Buat data dan child dari theme
-    );
+        ),),
+// TODO: 4. Buat data dan child dari Theme
 
+    );
   }
 }
 
-class ScreenArguments {
-  final String title;
-  final String message;
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-  ScreenArguments(this.title, this.message);
+// This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Catering',
+        theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+              iconTheme: IconThemeData(color: Colors.pinkAccent),
+              titleTextStyle: TextStyle(
+                color: Colors.pinkAccent,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              )
+          ),
+          colorScheme:
+          ColorScheme.fromSeed(seedColor: Colors.pinkAccent).copyWith(
+            primary: Colors.pinkAccent,
+            surface: Colors.pinkAccent[50],
+          ),
+          useMaterial3: true,
+        ),
+        //home: SignUpScreen()
+      home: SearchScreen(),
+    );
+  }
 }
-
