@@ -158,7 +158,7 @@ var catringList = [
     name: 'Salmon With Mashed Potato',
     harga: 'Rp. 68.000',
     description:
-    'Salmon With Mushed Potatto adalah menju yang berbahan dasar ikan salmon fresh yang dimakan dengan Mushed Potato.',
+    'Salmon With Mushed Potato adalah menu yang praktis dan mudah dibuat. Ikan salmon dapat dimasak dengan berbagai cara, seperti dipanggang, direbus, atau ditumis. Kentang tumbuk dapat dibuat dengan berbagai cara, seperti direbus, ditim, atau digoreng. Oleh karena itu, Salmon With Mushed Potato merupakan menu yang cocok untuk berbagai kalangan.',
     imageAsset: 'images/salmon_with_mashed_potato.jpg',
     imageUrls: [
       'https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1024/https://www.flokq.com/blog/wp-content/uploads/2020/09/healthy-cate-1024x768.jpg',
@@ -177,7 +177,7 @@ var catringList = [
     name: 'Rice Chicken Satay',
     harga: 'Rp. 40.000',
     description:
-    'Rice Chicken Satay merupakan menu diet berbahan dasar nasi yang diolah dengan sate dada ayam dengan sayuran.',
+    'Rice Chicken Satay adalah menu yang cocok untuk diet karena terbuat dari bahan-bahan yang rendah kalori dan lemak. Nasi merupakan sumber karbohidrat kompleks yang rendah kalori, dada ayam merupakan sumber protein yang rendah lemak, dan sayuran merupakan sumber serat yang baik. Kombinasi ketiga bahan ini membuat menu ini menjadi lezat dan mengenyangkan tanpa membuat gemuk..',
     imageAsset: 'images/rice_chicken_satay.jpg',
     imageUrls: [
       'https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1024/https://www.flokq.com/blog/wp-content/uploads/2020/09/healthy-cate-1024x768.jpg',
