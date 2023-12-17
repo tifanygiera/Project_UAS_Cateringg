@@ -22,10 +22,10 @@ var catringList = [
 
   ),
   Catering(
-    name: 'Fried rice tongkol',
+    name: 'Fried Rice Tongkol',
     harga: 'Rp. 34.000',
     description:
-    'fried rice tongkol, merupakan menu diet yang berbahan dari nasi merah yang di goreng dengan menggunakan minyak kelapa dengan protein dari ikan tongkolnya, menjadikan menu ini menu yang enak namun sehat',
+    'Fried Rice Tongkol ialah menu diet yang terbuat dari bahan-bahan yang sehat dan bergizi. Nasi merah merupakan sumber karbohidrat kompleks yang baik, minyak kelapa merupakan sumber lemak sehat, dan ikan tongkol merupakan sumber protein yang baik. Oleh karena itu, fried rice tongkol merupakan menu yang enak dan menyehatkan.',
     imageAsset: 'images/fried_rice_tongkol.jpg',
     imageUrls: [
       'https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1024/https://www.flokq.com/blog/wp-content/uploads/2020/09/healthy-cate-1024x768.jpg',
@@ -41,10 +41,10 @@ var catringList = [
     isFavorite: false,
   ),
   Catering(
-    name: 'Ayam asam manis',
+    name: 'Ayam Asam Manis',
     harga: 'Rp. 36.000',
     description:
-    'ayam asam manis, menu ini merupakan makanan yang banyak diminati karena berbahan dasar ayam dengan dibaluri saus asam manis menjadikan menu ini sangat lezat dan juga enak namun tetap sehat',
+    'Ayam Asam Manis adalah menu makanan yang banyak digemari karena terbuat dari ayam yang digoreng tepung dan dilapisi saus asam manis. Rasanya yang manis dan asam, serta teksturnya yang renyah dan lembut, membuat ayam asam manis menjadi menu yang lezat dan enak. Selain itu, ayam asam manis juga merupakan menu yang sehat karena terbuat dari bahan-bahan yang kaya akan nutrisi.',
     imageAsset: 'images/ayam_asam_manis.jpg',
     imageUrls: [
       'https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1024/https://www.flokq.com/blog/wp-content/uploads/2020/09/healthy-cate-1024x768.jpg',
@@ -60,10 +60,10 @@ var catringList = [
     isFavorite: false,
   ),
   Catering(
-    name: 'Dada ayam dengan salad',
+    name: 'Dada Ayam dengan Salad',
     harga: 'Rp. 47.000',
     description:
-    'dada ayam dengan salad, menu ini berbahan dasar dada ayam yang mengandung protein yang sangat baik untuk memenuhi kebutuhan dalam diet',
+    'Dada Ayam dengan Salad adalah menu yang kaya akan protein dan nutrisi. Dada ayam merupakan sumber protein yang baik, sedangkan salad merupakan sumber serat, vitamin, dan mineral. Oleh karena itu, dada ayam dengan salad merupakan menu yang cocok untuk memenuhi kebutuhan nutrisi dalam diet.',
     imageAsset: 'images/dada_ayam_dengan_salad.jpg',
     imageUrls: [
       'https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1024/https://www.flokq.com/blog/wp-content/uploads/2020/09/healthy-cate-1024x768.jpg',
@@ -79,10 +79,10 @@ var catringList = [
     isFavorite: false,
   ),
   Catering(
-    name: 'Chicken katsu with salad',
+    name: 'Chicken Katsu with Salad',
     harga: 'Rp. 30.000',
     description:
-    'chicken katsu with salad adalah menu yang dibuat sebagai makanan diet namun tetap lezat karena berbahan dari ayam dan di makan bersana salad dengan sayuran yang fresh.',
+    'Chicken Katsu With Salad adalah menu yang dibuat sebagai makanan diet namun tetap lezat karena berbahan dari ayam dan di makan bersana salad dengan sayuran yang fresh.',
     imageAsset: 'images/chicken_katsu_with_salad.jpg',
     imageUrls: [
       'https://s3.dealjava.com/content/thumb_small/a097ee207d06984eabf3b9476f081442.jpg',
@@ -98,10 +98,10 @@ var catringList = [
     isFavorite: false,
   ),
   Catering(
-    name: 'Mushroom with red rice',
+    name: 'Mushroom With Red Rice',
     harga: 'Rp. 60.000',
     description:
-    'mushroom with red rice, menu diet yang satu ini merupakan makanan diet berbahan dasar nasi merah dan juga jamur yang diolah menjadi makanan sehat dan juga lezat selain itu menu ini juga sangat digemari banyak orang yang sedang menjalani program diet karna menu sangat sehat dan mengenyangkan.',
+    'Mushroom with Red Rice, menu diet yang satu ini merupakan makanan diet berbahan dasar nasi merah dan juga jamur yang diolah menjadi makanan sehat dan juga lezat selain itu menu ini juga sangat digemari banyak orang yang sedang menjalani program diet karna menu sangat sehat dan mengenyangkan.',
     imageAsset: 'images/mushroom_with_red_rice.jpg',
     imageUrls: [
       'https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1024/https://www.flokq.com/blog/wp-content/uploads/2020/09/healthy-cate-1024x768.jpg',
@@ -117,10 +117,10 @@ var catringList = [
     isFavorite: false,
   ),
   Catering(
-    name: 'Beef with kimchi',
+    name: 'Beef With Kimchi',
     harga: 'Rp. 65.000',
     description:
-     'beef with kimchi merupakan menu sehat yang berbaha dasar dari daging sapi yanbg diolah menjadi masakan sehat lalu dimakan dengan kimchi yang merupakan olahan dari sayur sawi, menu ini terlihat seperti bukan makanan diet karena tampilannya yang sangat menarik dan juga pastinya enak namun  jumlah kalorinya yang sudah diatur untuk memenuhi kebutuhan program diet.',
+     'Beef With Kimchi merupakan menu sehat yang berbahan dasar dari daging sapi yang diolah menjadi masakan sehat lalu dimakan dengan kimchi yang merupakan olahan dari sayur sawi, menu ini terlihat seperti bukan makanan diet karena tampilannya yang sangat menarik dan juga pastinya enak namun  jumlah kalorinya yang sudah diatur untuk memenuhi kebutuhan program diet.',
     imageAsset: 'images/beef_with_kimchi.jpg',
     imageUrls: [
       'https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1024/https://www.flokq.com/blog/wp-content/uploads/2020/09/healthy-cate-1024x768.jpg',
@@ -136,10 +136,10 @@ var catringList = [
     isFavorite: false,
   ),
   Catering(
-    name: 'Yellow rice with fried chicken',
+    name: 'Yellow Rice With Fried Chicken',
     harga: 'Rp. 32.000',
     description:
-    'yelow rice with fried chicken adalah menu yang berbahan dari nasi yang diolah menjadi nasi kuning dan dimakan bersama ayam goreng menu ini sangat nusantara sekali dan sangat cocok dimakan sehari hari walau sedang menajalani program diet menu ini dibuat bertujuan agar orang yang sedang menjalani program diet dapat tetap memakan makanan enak dengan menu nusantara.',
+    'Yellow Rice With Fried chicken adalah menu yang berbahan dari nasi yang diolah menjadi nasi kuning dan dimakan bersama ayam goreng menu ini sangat nusantara sekali dan sangat cocok dimakan sehari hari walau sedang menajalani program diet menu ini dibuat bertujuan agar orang yang sedang menjalani program diet dapat tetap memakan makanan enak dengan menu nusantara.',
     imageAsset: 'images/yellow_rice_with_fried_rice.jpg',
     imageUrls: [
       'https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1024/https://www.flokq.com/blog/wp-content/uploads/2020/09/healthy-cate-1024x768.jpg',
@@ -155,10 +155,10 @@ var catringList = [
     isFavorite: false,
   ),
   Catering(
-    name: 'Salmon with mashed potato',
+    name: 'Salmon With Mashed Potato',
     harga: 'Rp. 68.000',
     description:
-    'salmon with mushed potatto adalah menju yang berbahan dasar ikan salmon fresh yang dimakan dengan mushed potato.',
+    'Salmon With Mushed Potatto adalah menju yang berbahan dasar ikan salmon fresh yang dimakan dengan Mushed Potato.',
     imageAsset: 'images/salmon_with_mashed_potato.jpg',
     imageUrls: [
       'https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1024/https://www.flokq.com/blog/wp-content/uploads/2020/09/healthy-cate-1024x768.jpg',
@@ -174,10 +174,10 @@ var catringList = [
     isFavorite: false,
   ),
   Catering(
-    name: 'Rice chicken satay',
+    name: 'Rice Chicken Satay',
     harga: 'Rp. 40.000',
     description:
-    'Rice chicken satay merupakan menu diet berbahan dasar nasi yang diolah dengan sate dada ayam dengan sayuran.',
+    'Rice Chicken Satay merupakan menu diet berbahan dasar nasi yang diolah dengan sate dada ayam dengan sayuran.',
     imageAsset: 'images/rice_chicken_satay.jpg',
     imageUrls: [
       'https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img,w_1024/https://www.flokq.com/blog/wp-content/uploads/2020/09/healthy-cate-1024x768.jpg',
