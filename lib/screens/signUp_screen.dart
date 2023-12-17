@@ -68,7 +68,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       // TODO : 2. Pasang Appbar
       appBar: AppBar(
         title: Text(
-          'Sign In',
+          'Sign Up',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.pinkAccent,

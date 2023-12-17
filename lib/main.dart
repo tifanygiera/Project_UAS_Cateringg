@@ -99,12 +99,12 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        //home: SignUpScreen()
+        home: SignUpScreen()
       //home: SignInScreen()
       //home: SearchScreen(),
       //home: ProfilScreen(),
       //home: HomeScreen(),
-      home: FavoriteScreen(),
+      //home: FavoriteScreen(),
       //home: DetailScreen(catering: catringList[6]),
     );
   }
