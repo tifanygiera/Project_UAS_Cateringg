@@ -103,7 +103,7 @@ class MyApp extends StatelessWidget {
       //home: SignInScreen()
       //home: SearchScreen(),
       //home: ProfilScreen(),
-      home: HomeScreen(),
+      //home: HomeScreen(),
       //home: FavoriteScreen(),
       //home: DetailScreen(catering: catringList[6]),
     );
