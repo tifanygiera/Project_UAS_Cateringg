@@ -1,4 +1,5 @@
 import 'package:Project_UAS_Cateringg/models/catering.dart';
+import 'package:Project_UAS_Cateringg/data/catering_data.dart';
 import 'package:flutter/material.dart';
 
 import 'package:Project_UAS_Cateringg/data/catering_data.dart';
@@ -43,12 +44,12 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Favorite Zoo'),
+        title: Text('Favorite Menu'),
       ),
       body: favoriteMenu.isEmpty
           ? Center(
         child: Text(
-          'Belum ada wisata yang difavoritkan.',
+          'Belum ada Menu yang difavoritkan.',
           style: TextStyle(fontSize: 16),
         ),
       )
@@ -61,7 +62,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: ListTile(
               leading: CircleAvatar(
-                backgroundImage: AssetImage(zoo.imageAsset),
+                backgroundImage: AssetImage(catringList.imageAsset),
               ),
 
             ),
