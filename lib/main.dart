@@ -9,20 +9,53 @@ import 'package:Project_UAS_Cateringg/screens/signIn_screen.dart';
 import 'package:Project_UAS_Cateringg/screens/signUp_screen.dart';
 
 
+
 void main() {
   runApp(const MyApp());
 }
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
-  State createState() => _MainScreenState();
-
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Catering',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen),
+        useMaterial3: true,
+      ),
+      initialRoute: '/',
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(builder: (context) => MainScreen());
+          case '/home':
+            return MaterialPageRoute(builder: (context) => HomeScreen());
+          case '/sign_up':
+            return MaterialPageRoute(builder: (context) => SignUpScreen());
+          case '/sign_in':
+            return MaterialPageRoute(builder: (context) => SignInScreen());
+          case '/search':
+            return MaterialPageRoute(builder: (context) => SearchScreen());
+          case '/detail':
+            return MaterialPageRoute(
+                builder: (context) =>  DetailScreen(catering: catringList[0]));
+          default:
+            return null;
+        }
+      },
+    );
+  }
 }
 
-class _MainScreenState extends State {
-// TODO: 1. Deklarasikan variable
+class MainScreen extends StatefulWidget {
+  @override
+  _MainScreenState createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
   final List _children = [
     HomeScreen(),
@@ -34,78 +67,45 @@ class _MainScreenState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-// TODO: 2. Buat properti body berupa widget yang ditampilkan
       body: _children[_currentIndex],
-// TODO: 3. Buat properti bottomNavigationBar dengan nilai Theme
-      bottomNavigationBar: Theme(data: Theme.of(context).copyWith(
-          canvasColor: Colors.pinkAccent[50]),
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(
+          canvasColor: Colors.pinkAccent[50],
+        ),
         child: BottomNavigationBar(
           currentIndex: _currentIndex,
-          onTap: (index){
+          onTap: (index) {
             setState(() {
               _currentIndex = index;
             });
           },
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home, color: Colors.pinkAccent,),
+              icon: Icon(Icons.home, color: Colors.pinkAccent),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search, color: Colors.pinkAccent,),
+              icon: Icon(Icons.search, color: Colors.pinkAccent),
               label: 'Search',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.favorite, color: Colors.pinkAccent,),
+              icon: Icon(Icons.favorite, color: Colors.pinkAccent),
               label: 'Favorite',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person, color: Colors.pinkAccent,),
+              icon: Icon(Icons.person, color: Colors.pinkAccent),
               label: 'Person',
             ),
           ],
           selectedItemColor: Colors.pinkAccent,
           unselectedItemColor: Colors.pinkAccent[100],
           showUnselectedLabels: true,
-        ),),
-// TODO: 4. Buat data dan child dari Theme
-
-    );
-  }
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-// This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-        title: 'Catering',
-        theme: ThemeData(
-          appBarTheme: const AppBarTheme(
-              iconTheme: IconThemeData(color: Colors.pinkAccent),
-              titleTextStyle: TextStyle(
-                color: Colors.pinkAccent,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              )
-          ),
-          colorScheme:
-          ColorScheme.fromSeed(seedColor: Colors.pinkAccent).copyWith(
-            primary: Colors.pinkAccent,
-            surface: Colors.pinkAccent[50],
-          ),
-          useMaterial3: true,
         ),
-        //home: SignUpScreen()
-      //home: SignInScreen()
-      //home: SearchScreen(),
-      //home: ProfilScreen(),
-      //home: HomeScreen(),
-      //home: FavoriteScreen(),
-      //home: DetailScreen(catering: catringList[6]),
+      ),
     );
   }
 }
+
+// Kelas layar lainnya di sini
+
+// Tambahkan kelas layar lainnya di sini
