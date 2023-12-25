@@ -8,7 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '';
 class  DetailScreen extends StatefulWidget {
   final Catering catering;
-
   DetailScreen ({super.key, required this.catering});
 
   @override
@@ -19,6 +18,40 @@ class _DetailScreenState extends State<DetailScreen> {
   bool isFavorite = false;
   bool isSignedIn = false;
 
+  @override
+  void initState(){
+    super.initState();
+    _checkSignInStatus();
+    _loadFavoriteStatus();
+  }
+
+  void _checkSignInStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool signedIn = prefs.getBool('isSignedIn') ?? false;
+    setState(() {
+      isSignedIn = signedIn;
+    });
+  }
+
+  void _loadFavoriteStatus() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool favorite = prefs.getBool('favorite_${widget.catering.name}') ?? false;
+    setState(() {
+      isFavorite= favorite;
+    });
+  }
+
+  void _showImageGallery(int initialIndex) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ImageGallery(
+          imageUrls: widget.catering.imageUrls,
+          initialIndex: initialIndex,
+        ),
+      ),
+    );
+  }
   Future<void> _toggleFavorite() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     // memeriksa apakah pengguna sudah sign in
@@ -29,16 +62,26 @@ class _DetailScreenState extends State<DetailScreen> {
       });
       return;
     }
-    bool favoriteStatus = !isFavorite;
-    prefs.setBool('favorite_${widget.catering.name}', favoriteStatus);
+    List<String> favorite = prefs.getStringList('favorite') ?? [];
+
+    // Check if the catering is already in favorites
+    if (isFavorite) {
+      favorite.remove(widget.catering.name);
+    } else {
+      favorite.add(widget.catering.name);
+    }
+
+    // Save the updated list of favorites
+    prefs.setStringList('favorite', favorite);
 
     setState(() {
-      isFavorite = favoriteStatus;
+      isFavorite = !isFavorite;
     });
+
+    if(!isFavorite){
+      Navigator.of(context).pop(widget.catering.name);
+    }
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -50,14 +93,17 @@ class _DetailScreenState extends State<DetailScreen> {
             Stack(
               children:[
                 //image utama
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal :16),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image.asset('${widget.catering.imageAsset}',
-                      width: double.infinity,
-                      height: 300,
-                      fit: BoxFit.cover,),
+                Hero(
+                  tag: widget.catering.imageAsset,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal :16),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.asset('${widget.catering.imageAsset}',
+                        width: double.infinity,
+                        height: 200,
+                        fit: BoxFit.cover,),
+                    ),
                   ),
                 ),
                 Padding(
@@ -98,7 +144,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       Text(
                         widget.catering.name,
                         style: TextStyle(
-                          fontSize: 25,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -108,7 +154,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         },
                         icon: Icon(isSignedIn && isFavorite
                             ? Icons.favorite
-                            :Icons.favorite_border,
+                            : Icons.favorite_border,
                           color: isSignedIn && isFavorite ? Colors.red : null,),
                       ),
                     ],
@@ -119,15 +165,9 @@ class _DetailScreenState extends State<DetailScreen> {
                     SizedBox(width: 8,),
                     SizedBox(width: 70,
                       child: Text('Harga', style: TextStyle(
-                        fontSize: 20,
-                          color: Colors.red,
                           fontWeight: FontWeight.bold),),),
-                    Text(
-                      widget.catering.harga,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold)
-                    ),],),
+                    Text(': ${widget.catering.harga}',),
+                  ],),
                   SizedBox(height: 16,),
                   Divider(color: Colors.pinkAccent.shade100,),
                   SizedBox(height: 16,),
@@ -137,7 +177,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     children: [
                       Text(
                         'Deskripsi', style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                       ),
@@ -145,14 +185,9 @@ class _DetailScreenState extends State<DetailScreen> {
                   ),
                   SizedBox(height: 16,),
                   Container(
-                    height: 150,
-                    child: Text(
-                        widget.catering.description,
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.normal)
+                    height: 100,
+                    child: Text('${widget.catering.description}'
                     ),
-
                   ),
                 ],
               ),
@@ -177,7 +212,9 @@ class _DetailScreenState extends State<DetailScreen> {
                         return Padding
                           (padding: EdgeInsets.only(right: 8),
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              _showImageGallery(index);
+                            },
                             child: Container(
                               decoration: BoxDecoration(),
                               child: ClipRRect(
@@ -204,12 +241,44 @@ class _DetailScreenState extends State<DetailScreen> {
                   SizedBox(height: 4,),
                   Text('Tap untuk memperbesar', style: TextStyle(
                     fontSize: 12, color: Colors.black54,
-                  ),),
+                  ),
+                  ),
                 ],
               ),
             )
           ],
         ),
+      ),
+    );
+  }
+}
+class ImageGallery extends StatelessWidget {
+  final List<String> imageUrls;
+  final int initialIndex;
+
+  const ImageGallery({
+    Key? key,
+    required this.imageUrls,
+    required this.initialIndex,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: PhotoViewGallery.builder(
+        itemCount: imageUrls.length,
+        builder: (context, index) {
+          return PhotoViewGalleryPageOptions(
+            imageProvider: CachedNetworkImageProvider(imageUrls[index]),
+            minScale: PhotoViewComputedScale.contained,
+            maxScale: PhotoViewComputedScale.covered * 2,
+          );
+        },
+        scrollPhysics: BouncingScrollPhysics(),
+        backgroundDecoration: BoxDecoration(
+          color: Colors.black,
+        ),
+        pageController: PageController(initialPage: initialIndex),
       ),
     );
   }
