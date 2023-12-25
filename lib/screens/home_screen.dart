@@ -5,7 +5,7 @@ import 'package:Project_UAS_Cateringg/widgets/item_card.dart';
 
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -15,20 +15,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // TODO : 1. Buat appBar dengan judul wisata candi
-      appBar: AppBar(title: Text('Menu Catering'),),
-      // TODO : 2. Body dengan gridview.builder
+      appBar: AppBar(
+        title: Text('Menu Catering'),
+      ),
       body: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2
-          ),
-          padding: EdgeInsets.all(8.0),
-          itemCount: catringList.length,
-          itemBuilder: (context, index){
-            Catering catering = catringList[index];
-            return ItemCard(catering: catering);
-          }),
-      // TODO : 3. Buat Itemcard sebagai return dari gridview.builder
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+        ),
+        padding: EdgeInsets.all(8.0),
+        itemCount: catringList.length,
+        itemBuilder: (context, index) {
+          Catering catering = catringList[index];
+          return ItemCard(catering: catering);
+        },
+      ),
     );
   }
 }
+

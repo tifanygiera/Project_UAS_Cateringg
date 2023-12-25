@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
+import 'package:Project_UAS_Cateringg/models/catering.dart';
 import 'package:Project_UAS_Cateringg/screens/detail_screen.dart';
 
-import '../models/catering.dart';
+
 
 class ItemCard extends StatelessWidget {
   // TODO : 1. Deklarasikan variabel yang dibutuhkan dan padang pada konstruktor
@@ -33,12 +35,15 @@ class ItemCard extends StatelessWidget {
             // TODO : 3. Buat Image sebagai anak dari column
             Expanded(
               // TODO : 7. Implementasi Hero animation
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Image.asset
-                  (catering.imageAsset,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+              child: Hero(
+                tag: catering.imageAsset,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset
+                    (catering.imageAsset,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
@@ -60,6 +65,10 @@ class ItemCard extends StatelessWidget {
                 left: 16,
                 bottom: 8,
               ),
+              child: Text(catering.harga,
+                style: TextStyle(
+                  fontSize: 12,
+                ),),
             ),
           ],
         ),
