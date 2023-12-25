@@ -49,7 +49,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     // print('username : $username');
     // print('password : $password');
 
-    Navigator.pushReplacementNamed(context, '/signin');
+    Navigator.pushReplacementNamed(context,'/signin');
   }
 
 
@@ -66,13 +66,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return  Scaffold(
       // TODO : 2. Pasang Appbar
-      appBar: AppBar(
-        title: Text(
-          'Sign Up',
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Colors.pinkAccent,
-      ),
+      appBar: AppBar(title: Text('Sign Up'),),
       // TODO : 3. Pasang body
       body: Center(
         child: SingleChildScrollView(

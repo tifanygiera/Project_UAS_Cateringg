@@ -1,8 +1,9 @@
-import "package:cached_network_image/cached_network_image.dart";
-import 'package:flutter/cupertino.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Project_UAS_Cateringg/models/catering.dart';
+import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '';
 class  DetailScreen extends StatefulWidget {

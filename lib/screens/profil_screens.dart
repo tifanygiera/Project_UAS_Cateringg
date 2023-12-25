@@ -1,32 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:Project_UAS_Cateringg/widgets/profile_info_item.dart';
 
-class ProfilScreen extends StatefulWidget {
-  const ProfilScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProfilScreen> createState() => _ProfilScreenState();
+  ProfileScreenState createState() => ProfileScreenState();
 }
 
-class _ProfilScreenState extends State<ProfilScreen> {
+class ProfileScreenState extends State<ProfileScreen> {
   // TODO: 1. Deklarasikan variabel yang dibutuhkan
   bool isSignedIn = false;
   String fullName = '';
   String userName = '';
-  int favoriteCeteringCount = 0;
   int favoriteCateringCount = 0;
+  late Color iconColor;
 
-  // TODO: 5. Implementasi fungsi sign-in
+  // TODO: 5. Implementasi fungsi signIn
   void signIn() {
-    setState(() {
-      isSignedIn = !isSignedIn;
-    });
+    // setState(() {
+    //   isSignedIn = true;
+    //   userName = username;
+    //   this.fullName = fullName;
+    //   this.favoriteCateringCount = favoriteCateringCount;
+    // });
+    Navigator.pushNamed(context, '/signin');
   }
 
-  // TODO: 6. Implementasi fungsi sign-out
+  // TODO: 6. Implementasi fungsi signOut
   void signOut() {
     setState(() {
-      isSignedIn = !isSignedIn;
+      isSignedIn = false;
+      userName = '';
+      fullName = '';
+      favoriteCateringCount = 0;
     });
+    Navigator.pushNamed(context, '/signin');
+  }
+
+  void editFullName() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        String editedName = fullName;
+        return AlertDialog(
+          title: const Text('Edit Nama'),
+          content: TextField(
+            onChanged: (value) {
+              editedName = value;
+            },
+            controller: TextEditingController(text: fullName),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Batal'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Simpan'),
+              onPressed: () {
+                setState(() {
+                  fullName = editedName;
+                });
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -56,142 +100,67 @@ class _ProfilScreenState extends State<ProfilScreen> {
                             border: Border.all(color: Colors.pinkAccent, width: 2),
                             shape: BoxShape.circle,
                           ),
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
                             radius: 50,
-                            backgroundImage: AssetImage('images/placeholder.jpg'),
+                            backgroundImage:
+                            AssetImage('image/placeholder_image.png'),
                           ),
                         ),
-                        SizedBox(height: 16), // Add some vertical spacing
                         if (isSignedIn)
                           IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.camera_alt, color: Colors.pinkAccent[50]),
+                            icon: Icon(
+                              Icons.camera_alt,
+                              color: Colors.pinkAccent[50],
+                            ),
                           ),
                       ],
                     ),
                   ),
                 ),
                 // TODO: 3. Buat bagian profilInfo yang berisi info profil
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Divider(color: Colors.pinkAccent[100]),
-                SizedBox(height: 4),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 3,
-                      child: Row(
-                        children: [
-                          Icon(Icons.lock, color: Colors.amber),
-                          SizedBox(width: 8),
-                          Text(
-                            'Pengguna',
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        ': $userName',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ),
-                  ],
+                const SizedBox(height: 4),
+                ProfileInfoItem(
+                  icon: Icons.lock,
+                  label: 'Pengguna',
+                  value: userName,
+                  iconColor: Colors.amber,
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Divider(color: Colors.pinkAccent[100]),
-                SizedBox(height: 4),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 3,
-                      child: Row(
-                        children: [
-                          Icon(Icons.person, color: Colors.blue),
-                          SizedBox(width: 8),
-                          Text(
-                            'Nama',
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        ': $fullName',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ),
-                    if (isSignedIn) Icon(Icons.edit),
-                  ],
+                const SizedBox(height: 4),
+                ProfileInfoItem(
+                  icon: Icons.person,
+                  label: 'Nama',
+                  value: fullName,
+                  showEditIcon: isSignedIn,
+                  onEditPressed: () {
+                    debugPrint('Icon edit ditekan ...');
+                  },
+                  iconColor: Colors.blue,
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Divider(color: Colors.pinkAccent[100]),
-                SizedBox(height: 4),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 3,
-                      child: Row(
-                        children: [
-                          Icon(Icons.favorite, color: Colors.red),
-                          SizedBox(width: 8),
-                          Text(
-                            'Favorite',
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        ': $fullName',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ),
-                    if (isSignedIn) Icon(Icons.edit),
-                  ],
+                const SizedBox(height: 4),
+                ProfileInfoItem(
+                  icon: Icons.favorite,
+                  label: 'Favorit',
+                  value: favoriteCateringCount > 0 ? '$favoriteCateringCount' : '',
+                  iconColor: Colors.red,
                 ),
-                // TODO: 4. Buat ProfilActions yang berisi TextButton sign in/out
-                SizedBox(height: 16), // Add some vertical spacing
+                const SizedBox(height: 4),
                 Divider(color: Colors.pinkAccent[100]),
-                SizedBox(height: 16), // Add some vertical spacing
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: isSignedIn
-                      ? TextButton(
-                    onPressed: signOut,
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.pinkAccent[100],
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Sign Out',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  )
-                      : TextButton(
-                    onPressed: signIn,
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.pinkAccent[100],
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Sign In',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
+                const SizedBox(height: 20),
+                isSignedIn
+                    ? TextButton(
+                  onPressed: signOut,
+                  child: const Text('Sign Out'),
+                )
+                    : TextButton(
+                  onPressed: signIn,
+                  child: const Text('Sign In'),
                 ),
               ],
             ),

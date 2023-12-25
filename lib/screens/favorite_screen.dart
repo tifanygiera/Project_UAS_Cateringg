@@ -1,72 +1,94 @@
-import 'package:Project_UAS_Cateringg/models/catering.dart';
-import 'package:Project_UAS_Cateringg/data/catering_data.dart';
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Project_UAS_Cateringg/data/catering_data.dart';
-
+import 'package:Project_UAS_Cateringg/models/catering.dart';
+import 'detail_screen.dart';
 
 class FavoriteScreen extends StatefulWidget {
-  const FavoriteScreen({Key? key});
-
-  // Buat daftar untuk menyimpan item favorit
-  static List<Catering> favoriteList = [];
-
-  // Metode untuk menambahkan item favorit
-  static void addFavorite(Catering catering) {
-    favoriteList.add(catering);
-    // Perbarui tampilan ketika item favorit ditambahkan
-    if (onListUpdated != null) {
-      onListUpdated!();
-    }
-  }
-
-  // Metode untuk menghapus item favorit
-  static void removeFavorite(Catering catering) {
-    favoriteList.remove(catering);
-    // Perbarui tampilan ketika item favorit dihapus
-    if (onListUpdated != null) {
-      onListUpdated!();
-    }
-  }
-
-  // Callback untuk memperbarui tampilan
-  static void Function()? onListUpdated;
-
   @override
-  State<FavoriteScreen> createState() => _FavoriteScreenState();
+  _FavoriteScreenState createState() => _FavoriteScreenState();
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
+  List<String> favorite = [];
+
+  GlobalKey<AnimatedListState> listKey = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadFavoriteStatus();
+  }
+
+  Future<void> _loadFavoriteStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> _loadFavoriteStatus = prefs.getStringList('favorite') ?? [];
+    setState(() {
+      favorite = _loadFavoriteStatus;
+    });
+  }
+
+  void _navigateToDetailScreen(String cateringName) {
+    Catering catering = catringList.firstWhere((catering) => catering.name == cateringName);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailScreen(catering: catering),
+      ),
+    );
+  }
+
+  void removeCateringFromList(String cateringName) {
+    int index = favorite.indexOf(cateringName);
+    if (index != -1) {
+      setState(() {
+        favorite.removeAt(index);
+        listKey.currentState?.removeItem(
+          index,
+              (context, animation) => buildItem(context, index, animation),
+        );
+      });
+    }
+  }
+
+  Widget buildItem(BuildContext context, int index, Animation<double> animation) {
+    return SizeTransition(
+      sizeFactor: animation,
+      child: ListTile(
+        title: Text(favorite[index]),
+        // Other ListTile properties
+      ),
+    );
+  }
+
+  Widget _buildCateringCard(String cateringName) {
+    Catering catering = catringList.firstWhere((catering) => catering.name == cateringName);
+
+    return Card(
+      margin: EdgeInsets.all(8),
+      child: ListTile(
+        contentPadding: EdgeInsets.all(8),
+        title: Text(catering.name),
+        subtitle: Text(catering.harga),
+        onTap: () {
+          // Navigate to DetailScreen when tapped
+          _navigateToDetailScreen(cateringName);
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Dapatkan daftar wisata yang sudah difavoritkan
-    List<Catering> favoriteMenu = FavoriteScreen.favoriteList;
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Favorite Menu'),
+        title: Text('Favorites'),
       ),
-      body: favoriteMenu.isEmpty
-          ? Center(
-        child: Text(
-          'Belum ada Menu yang difavoritkan.',
-          style: TextStyle(fontSize: 16),
-        ),
-      )
-          : ListView.builder(
-        itemCount: favoriteMenu.length,
+      body: ListView.builder(
+        itemCount: favorite.length,
         itemBuilder: (context, index) {
-          final zoo = favoriteMenu[index];
-          return Card(
-            margin:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: AssetImage(catringList.imageAsset),
-              ),
-
-            ),
-          );
+          return _buildCateringCard(favorite[index]);
         },
       ),
     );

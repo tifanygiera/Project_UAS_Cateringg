@@ -1,8 +1,8 @@
+import 'package:Project_UAS_Cateringg/models/catering.dart';
 import 'package:flutter/material.dart';
 import 'package:Project_UAS_Cateringg/data/catering_data.dart';
 import 'package:Project_UAS_Cateringg/widgets/item_card.dart';
 
-import '../models/catering.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,22 +15,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // TODO : 1. Buat appBar dengan judul Catering
-      appBar: AppBar(
-        title: Text(
-          'Menu Catering',
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Colors.pinkAccent,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search, color: Colors.white),
-            onPressed: () {
-              // Add your search functionality here
-            },
-          ),
-        ],
-      ),
+      // TODO : 1. Buat appBar dengan judul wisata candi
+      appBar: AppBar(title: Text('Menu Catering'),),
       // TODO : 2. Body dengan gridview.builder
       body: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -38,12 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           padding: EdgeInsets.all(8.0),
           itemCount: catringList.length,
-          // TODO : 3. Buat Itemcard sebagai return dari gridview.builder
           itemBuilder: (context, index){
             Catering catering = catringList[index];
-            return ItemCard(catering:catering);
+            return ItemCard(catering: catering);
           }),
-
+      // TODO : 3. Buat Itemcard sebagai return dari gridview.builder
     );
   }
 }

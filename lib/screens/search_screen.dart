@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:Project_UAS_Cateringg/data/catering_data.dart';
 import 'package:Project_UAS_Cateringg/models/catering.dart';
+import 'detail_screen.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+  const SearchScreen({Key? key}) : super(key: key);
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  // TODO: 1. Deklarasikan variabel yang dibutuhkan
-  List<Catering> _filteredCaterings = catringList;
+  List<Catering> _filteredCatering = [];
   String _searchQuery = '';
   final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _filteredCatering = [];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // TODO: 2. Buat appbar dengan judul pencarian menu catering
       appBar: AppBar(
-        title: Text(
-          'Pencarian Menu Catering',
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Colors.pinkAccent,
+        title: Text('Pencarian Menu Catering'),
       ),
-      // TODO: 3. Buat body berupa column
       body: Column(
         children: [
-          // TODO: 4. Buat textfield pencarian sebagai anak dari column
           Padding(
             padding: const EdgeInsets.all(16),
             child: Container(
@@ -37,53 +37,69 @@ class _SearchScreenState extends State<SearchScreen> {
                 color: Colors.pinkAccent[50],
               ),
               child: TextField(
+                controller: _searchController,
+                onChanged: (query) {
+                  // Call the search function whenever the text changes
+                  _searchCatering(query);
+                },
                 autofocus: false,
                 decoration: InputDecoration(
-                    hintText: 'Cari Menu Catering...',
-                    prefixIcon: Icon(Icons.search),
-                    border: InputBorder.none,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.pinkAccent),
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 12,
-                    )
+                  hintText: 'Cari Menu...',
+                  prefixIcon: Icon(Icons.search),
+                  border: InputBorder.none,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.pinkAccent),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
                 ),
               ),
             ),
           ),
-          // TODO: 5. Buat listview hasil pencarian sebagai anak dari column
           Expanded(
             child: ListView.builder(
-              itemCount: _filteredCaterings.length,
+              itemCount: _filteredCatering.length,
               itemBuilder: (context, index) {
-                final catering = _filteredCaterings[index];
+                final catering = _filteredCatering[index];
                 return Card(
                   margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(8),
-                        width: 100,
-                        height: 100,
-                        child: ClipRRect(
+                  child: GestureDetector(
+                    onTap: () {
+                      _navigateToDetailScreen(catering);
+                    },
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          width: 100,
+                          height: 100,
+                          child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Image.asset(
                               catering.imageAsset,
                               fit: BoxFit.cover,
-                            )),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(catering.name, style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold,
-                          ),),
-                        ],
-                      )
-                    ],
+                            ),
+                          ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              catering.name,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 4),
+                            Text(catering.harga),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
@@ -93,4 +109,22 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
     );
   }
+
+  void _searchCatering(String query) {
+    setState(() {
+      _filteredCatering = catringList
+          .where((catering) =>
+          catering.name.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    });
+  }
+  void _navigateToDetailScreen(Catering catering) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailScreen(catering: catering),
+      ),
+    );
+  }
+
 }
