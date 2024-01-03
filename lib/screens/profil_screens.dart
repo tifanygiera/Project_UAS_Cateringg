@@ -9,25 +9,15 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class ProfileScreenState extends State<ProfileScreen> {
-  // TODO: 1. Deklarasikan variabel yang dibutuhkan
   bool isSignedIn = false;
   String fullName = '';
   String userName = '';
   int favoriteCateringCount = 0;
-  late Color iconColor;
 
-  // TODO: 5. Implementasi fungsi signIn
   void signIn() {
-    // setState(() {
-    //   isSignedIn = true;
-    //   userName = username;
-    //   this.fullName = fullName;
-    //   this.favoriteCateringCount = favoriteCateringCount;
-    // });
     Navigator.pushNamed(context, '/signin');
   }
 
-  // TODO: 6. Implementasi fungsi signOut
   void signOut() {
     setState(() {
       isSignedIn = false;
@@ -87,7 +77,6 @@ class ProfileScreenState extends State<ProfileScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
-                // TODO: 2. Buat bagian ProfilHeader yang berisi gambar profil
                 Align(
                   alignment: Alignment.topCenter,
                   child: Padding(
@@ -103,7 +92,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                           child: const CircleAvatar(
                             radius: 50,
                             backgroundImage:
-                            AssetImage('image/placeholder_image.png'),
+                            AssetImage('image/placeholder.jpg'),
                           ),
                         ),
                         if (isSignedIn)
@@ -114,11 +103,20 @@ class ProfileScreenState extends State<ProfileScreen> {
                               color: Colors.pinkAccent[50],
                             ),
                           ),
+                        if (!isSignedIn) // Tambahkan kondisi jika pengguna tidak masuk
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Icon(
+                              Icons.person,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          ),
                       ],
                     ),
                   ),
                 ),
-                // TODO: 3. Buat bagian profilInfo yang berisi info profil
                 const SizedBox(height: 20),
                 Divider(color: Colors.pinkAccent[100]),
                 const SizedBox(height: 4),
@@ -136,9 +134,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                   label: 'Nama',
                   value: fullName,
                   showEditIcon: isSignedIn,
-                  onEditPressed: () {
-                    debugPrint('Icon edit ditekan ...');
-                  },
+                  onEditPressed: editFullName,
                   iconColor: Colors.blue,
                 ),
                 const SizedBox(height: 4),
