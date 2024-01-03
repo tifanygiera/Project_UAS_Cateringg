@@ -101,7 +101,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       borderRadius: BorderRadius.circular(20),
                       child: Image.asset('${widget.catering.imageAsset}',
                         width: double.infinity,
-                        height: 200,
+                        height: 300,
                         fit: BoxFit.cover,),
                     ),
                   ),
@@ -144,7 +144,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       Text(
                         widget.catering.name,
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -160,33 +160,43 @@ class _DetailScreenState extends State<DetailScreen> {
                     ],
                   ),
                   //info tegah
-                  SizedBox(height: 16,),
-                  Row(children: [
-                    SizedBox(width: 8,),
-                    SizedBox(width: 70,
-                      child: Text('Harga', style: TextStyle(
-                          fontWeight: FontWeight.bold),),),
-                    Text(': ${widget.catering.harga}',),
-                  ],),
-                  SizedBox(height: 16,),
-                  Divider(color: Colors.pinkAccent.shade100,),
-                  SizedBox(height: 16,),
-                  //info bawah
-                  SizedBox(height: 16,),
+                  SizedBox(height: 20),
+                  Row(
+                    children: [
+                      SizedBox(width: 8),
+                      SizedBox(
+                        width: 70,
+                        child: Text(
+                          'Harga',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Text(': ${widget.catering.harga}',
+                          style: TextStyle(fontSize: 18)),
+                    ],
+                  ),
+                  SizedBox(height: 16),
+                  Divider(color: Colors.pinkAccent.shade100),
+                  SizedBox(height: 16),
+                  // info bawah
+                  SizedBox(height: 16),
                   Row(
                     children: [
                       Text(
-                        'Deskripsi', style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                        'Deskripsi',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 16,),
+                  SizedBox(height: 16),
                   Container(
                     height: 100,
-                    child: Text('${widget.catering.description}'
+                    child: SingleChildScrollView(
+                      child: Text('${widget.catering.description}',
+                          style: TextStyle(fontSize: 18)),
                     ),
                   ),
                 ],
@@ -200,7 +210,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 children: [
                   Divider(color: Colors.pinkAccent.shade100,),
                   Text('Galeri', style: TextStyle(
-                    fontSize: 16, fontWeight: FontWeight.bold,
+                    fontSize: 20, fontWeight: FontWeight.bold,
                   ),),
                   SizedBox(height: 10,),
                   SizedBox(
@@ -240,7 +250,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   ),
                   SizedBox(height: 4,),
                   Text('Tap untuk memperbesar', style: TextStyle(
-                    fontSize: 12, color: Colors.black54,
+                    fontSize: 16, color: Colors.black54,
                   ),
                   ),
                 ],

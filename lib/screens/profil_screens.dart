@@ -14,7 +14,13 @@ class ProfileScreenState extends State<ProfileScreen> {
   String userName = '';
   int favoriteCateringCount = 0;
 
-  void signIn() {
+  void signIn(String username, String fullName, int favoriteCateringCount) {
+    setState(() {
+      isSignedIn = true;
+      userName = username;
+      this.fullName = fullName;
+      this.favoriteCateringCount = favoriteCateringCount;
+    });
     Navigator.pushNamed(context, '/signin');
   }
 
@@ -92,7 +98,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                           child: const CircleAvatar(
                             radius: 50,
                             backgroundImage:
-                            AssetImage('image/placeholder.jpg'),
+                            AssetImage('images/placeholder.jpg'),
                           ),
                         ),
                         if (isSignedIn)
@@ -155,7 +161,9 @@ class ProfileScreenState extends State<ProfileScreen> {
                   child: const Text('Sign Out'),
                 )
                     : TextButton(
-                  onPressed: signIn,
+                  onPressed: () {
+                    signIn('agindanoorfadhillah', 'aginda noor fadhillah', 1); // Ganti dengan informasi sebenarnya saat implementasi otentikasi
+                  },
                   child: const Text('Sign In'),
                 ),
               ],
