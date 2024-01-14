@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Project_UAS_Cateringg/widgets/profile_info_item.dart';
-
+import 'package:image_picker/image_picker.dart';
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -68,7 +68,18 @@ class ProfileScreenState extends State<ProfileScreen> {
       },
     );
   }
+  void openCameraOrGallery() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
 
+    if (pickedFile != null) {
+      // Update the image or perform any other necessary actions
+      // For example, you can use the pickedFile.path to set the image
+      setState(() {
+        // Update the image
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

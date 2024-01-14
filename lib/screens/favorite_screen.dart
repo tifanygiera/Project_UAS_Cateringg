@@ -29,6 +29,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   }
 
   void _navigateToDetailScreen(String cateringName) {
+
     Catering catering = catringList.firstWhere((catering) => catering.name == cateringName);
 
     Navigator.push(
@@ -94,3 +95,4 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     );
   }
 }
+
