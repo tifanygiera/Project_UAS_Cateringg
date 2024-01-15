@@ -1,117 +1,99 @@
 import 'package:flutter/material.dart';
-import 'package:Project_UAS_Cateringg/screens/signIn_screen.dart';
 import 'package:Project_UAS_Cateringg/widgets/profile_info_item.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:image_picker/image_picker.dart';
-
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  ProfileScreenState createState() => ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
-  // TODO: 1. Deklarasikan variabel yang dibutuhkan
+class ProfileScreenState extends State<ProfileScreen> {
   bool isSignedIn = false;
   String fullName = '';
   String userName = '';
   int favoriteCateringCount = 0;
 
-  Future<void> _pickImage() async {
-    final ImagePicker _picker = ImagePicker();
-
-    final XFile? image = await _picker.pickImage(
-      source: ImageSource.camera, // Ganti dengan ImageSource.gallery jika ingin memilih dari galeri
-    );
-
-    if (image != null) {
-      // Lakukan sesuatu dengan gambar yang dipilih, misalnya menyimpannya atau menampilkan di UI
-      // Tambahkan logika sesuai kebutuhan
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    // Mengambil dan menetapkan data pengguna saat layar pertama kali diinisialisasi
-    retrieveUserData();
-  }
-
-  void retrieveUserData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    // Periksa apakah pengguna sudah masuk
-    bool signedIn = prefs.getBool('isSignedIn') ?? false;
-
+  void signIn(String username, String fullName, int favoriteCateringCount) {
     setState(() {
-      isSignedIn = signedIn;
+      isSignedIn = true;
+      userName = username;
+      this.fullName = fullName;
+      this.favoriteCateringCount = favoriteCateringCount;
     });
-
-    if (signedIn) {
-      // Mengambil dan mendekripsi data pengguna
-      String encryptedFullName = prefs.getString('fullname') ?? '';
-      String encryptedUserName = prefs.getString('username') ?? '';
-
-      String keyString = prefs.getString('key') ?? '';
-      String ivString = prefs.getString('iv') ?? '';
-
-      encrypt.Key key = encrypt.Key.fromBase64(keyString);
-      encrypt.IV iv = encrypt.IV.fromBase64(ivString);
-
-      encrypt.Encrypter encrypter = encrypt.Encrypter(encrypt.AES(key));
-
-      // Mendekripsi dan menetapkan data pengguna
-      String decryptedFullName = encrypter.decrypt64(encryptedFullName, iv: iv);
-      String decryptedUserName = encrypter.decrypt64(encryptedUserName, iv: iv);
-
-      setState(() {
-        fullName = decryptedFullName;
-        userName = decryptedUserName;
-      });
-      
-      List<String>? favoriteCateringNames =
-          prefs.getStringList('favoriteCateringNames') ?? [];
-      
-      setState(() {
-        favoriteCateringCount = favoriteCateringNames.length;
-      });
-    }
+    Navigator.pushNamed(context, '/signin');
   }
 
-  void signIn() async {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => SignInScreen()),
-    );
-  }
-
-  void signOut() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    // Menghapus data pengguna saat keluar
-    prefs.clear();
+  void signOut() {
     setState(() {
       isSignedIn = false;
-      fullName = '';
       userName = '';
+      fullName = '';
       favoriteCateringCount = 0;
     });
+    Navigator.pushNamed(context, '/signin');
   }
 
+  void editFullName() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        String editedName = fullName;
+        return AlertDialog(
+          title: const Text('Edit Nama'),
+          content: TextField(
+            onChanged: (value) {
+              editedName = value;
+            },
+            controller: TextEditingController(text: fullName),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Batal'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Simpan'),
+              onPressed: () {
+                setState(() {
+                  fullName = editedName;
+                });
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+  void openCameraOrGallery() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+
+    if (pickedFile != null) {
+      // Update the image or perform any other necessary actions
+      // For example, you can use the pickedFile.path to set the image
+      setState(() {
+        // Update the image
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
           Container(
-            height: 200, width: double.infinity, color: Colors.pinkAccent,
+            height: 200,
+            width: double.infinity,
+            color: Colors.pinkAccent,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
-                // TODO: 2. Buat bagian ProfileHeader yang berisi gambar profil
                 Align(
                   alignment: Alignment.topCenter,
                   child: Padding(
@@ -121,95 +103,80 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 2),
+                            border: Border.all(color: Colors.pinkAccent, width: 2),
                             shape: BoxShape.circle,
                           ),
                           child: const CircleAvatar(
                             radius: 50,
-                            backgroundImage: AssetImage('images/placeholder_image.png'),
+                            backgroundImage:
+                            AssetImage('images/placeholder.jpg'),
                           ),
                         ),
-                        if(isSignedIn)
+                        if (isSignedIn)
                           IconButton(
-                            onPressed: _pickImage,
-                            icon: Icon(Icons.camera_alt, color: Colors.pinkAccent[50],),),
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.camera_alt,
+                              color: Colors.pinkAccent[50],
+                            ),
+                          ),
+                        if (!isSignedIn) // Tambahkan kondisi jika pengguna tidak masuk
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Icon(
+                              Icons.person,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          ),
                       ],
                     ),
                   ),
                 ),
-                // TODO: 3. Buat bagian ProfileInfo yang berisi info profil
                 const SizedBox(height: 20),
                 Divider(color: Colors.pinkAccent[100]),
                 const SizedBox(height: 4),
-                Row(
-                  children: [
-                    SizedBox(width: MediaQuery.of(context).size.width / 3,
-                      child: const Row(
-                        children: [
-                          Icon(Icons.lock, color: Colors.amber),
-                          SizedBox(width: 8),
-                          Text('Pengguna', style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold,
-                          ),),
-                        ],
-                      ),),
-                    Expanded(
-                      child: Text(': $userName', style: const TextStyle(
-                          fontSize: 18),),),
-                  ],
+                ProfileInfoItem(
+                  icon: Icons.lock,
+                  label: 'Pengguna',
+                  value: userName,
+                  iconColor: Colors.amber,
                 ),
                 const SizedBox(height: 4),
                 Divider(color: Colors.pinkAccent[100]),
                 const SizedBox(height: 4),
-                Row(
-                  children: [
-                    SizedBox(width: MediaQuery.of(context).size.width / 3,
-                      child: const Row(
-                        children: [
-                          Icon(Icons.person, color: Colors.pinkAccent),
-                          SizedBox(width: 8),
-                          Text('Nama', style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold,
-                          ),),
-                        ],
-                      ),),
-                    Expanded(
-                      child: Text(': $fullName', style: const TextStyle(
-                          fontSize: 18),),),
-                    if(isSignedIn) const Icon(Icons.edit),
-                  ],
+                ProfileInfoItem(
+                  icon: Icons.person,
+                  label: 'Nama',
+                  value: fullName,
+                  showEditIcon: isSignedIn,
+                  onEditPressed: editFullName,
+                  iconColor: Colors.blue,
                 ),
                 const SizedBox(height: 4),
                 Divider(color: Colors.pinkAccent[100]),
                 const SizedBox(height: 4),
-                Row(
-                  children: [
-                    SizedBox(width: MediaQuery.of(context).size.width / 3,
-                      child: const Row(
-                        children: [
-                          Icon(Icons.favorite, color: Colors.red),
-                          SizedBox(width: 8),
-                          Text('Favorit', style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold,
-                          ),),
-                        ],
-                      ),),
-                    Expanded(
-                      child: favoriteCateringCount > 0
-                          ? Text(': $favoriteCateringCount', style: const TextStyle(fontSize: 18),)
-                          : const Text(':', style: TextStyle(fontSize: 18),),),
-                  ],
+                ProfileInfoItem(
+                  icon: Icons.favorite,
+                  label: 'Favorit',
+                  value: favoriteCateringCount > 0 ? '$favoriteCateringCount' : '',
+                  iconColor: Colors.red,
                 ),
-                // TODO: 4. Buat ProfileActions yang berisi TextButton sign in/out
                 const SizedBox(height: 4),
-                Divider(color: Colors.deepPurple[100]),
+                Divider(color: Colors.pinkAccent[100]),
                 const SizedBox(height: 20),
-                isSignedIn ? TextButton(
-                    onPressed: signOut,
-                    child: const Text('Sign Out'))
+                isSignedIn
+                    ? TextButton(
+                  onPressed: signOut,
+                  child: const Text('Sign Out'),
+                )
                     : TextButton(
-                    onPressed: signIn,
-                    child: const Text('Sign In')),
+                  onPressed: () {
+                    signIn('agindanoorfadhillah', 'aginda noor fadhillah', 1); // Ganti dengan informasi sebenarnya saat implementasi otentikasi
+                  },
+                  child: const Text('Sign In'),
+                ),
               ],
             ),
           ),
@@ -218,4 +185,3 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
-     
