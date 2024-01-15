@@ -2,97 +2,95 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Project_UAS_Cateringg/data/catering_data.dart';
 import 'package:Project_UAS_Cateringg/models/catering.dart';
-import 'detail_screen.dart';
+import 'package:Project_UAS_Cateringg/widgets/item_card.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: FavoriteScreen(),
+    );
+  }
+}
 
 class FavoriteScreen extends StatefulWidget {
+  const FavoriteScreen({Key? key});
   @override
   _FavoriteScreenState createState() => _FavoriteScreenState();
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
-  List<String> favorite = [];
-
-  GlobalKey<AnimatedListState> listKey = GlobalKey();
+  List<Catering> favoriteCaterings = [];
 
   @override
   void initState() {
     super.initState();
-    _loadFavoriteStatus();
+    loadFavoriteCaterings();
   }
 
-  Future<void> _loadFavoriteStatus() async {
+  Future<void> loadFavoriteCaterings() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String> _loadFavoriteStatus = prefs.getStringList('favorite') ?? [];
+
+    List<String>? favoriteCateringNames =
+        prefs.getStringList('favoriteCateringNames') ?? [];
+
+    // Menyimpan kembali daftar favorit yang sudah diupdate
+    prefs.setStringList('favoriteCateringNames', favoriteCateringNames);
+
+    List<Catering> favorites = catringList
+        .where((catering) => favoriteCateringNames.contains(catering.name))
+        .toList();
+
     setState(() {
-      favorite = _loadFavoriteStatus;
+      favoriteCaterings = favorites;
     });
   }
 
-  void _navigateToDetailScreen(String cateringName) {
+  Future<void> _removeFromFavorites(Catering catering) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    Catering catering = catringList.firstWhere((catering) => catering.name == cateringName);
+    List<String>? favoriteCateringNames =
+        prefs.getStringList('favoriteCateringNames') ?? [];
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DetailScreen(catering: catering),
-      ),
-    );
-  }
+    favoriteCateringNames.remove(catering.name);
 
-  void removeCateringFromList(String cateringName) {
-    int index = favorite.indexOf(cateringName);
-    if (index != -1) {
-      setState(() {
-        favorite.removeAt(index);
-        listKey.currentState?.removeItem(
-          index,
-              (context, animation) => buildItem(context, index, animation),
-        );
-      });
-    }
-  }
+    prefs.setStringList('favoriteCateringNames', favoriteCateringNames);
 
-  Widget buildItem(BuildContext context, int index, Animation<double> animation) {
-    return SizeTransition(
-      sizeFactor: animation,
-      child: ListTile(
-        title: Text(favorite[index]),
-        // Other ListTile properties
-      ),
-    );
-  }
-
-  Widget _buildCateringCard(String cateringName) {
-    Catering catering = catringList.firstWhere((catering) => catering.name == cateringName);
-
-    return Card(
-      margin: EdgeInsets.all(8),
-      child: ListTile(
-        contentPadding: EdgeInsets.all(8),
-        title: Text(catering.name),
-        subtitle: Text(catering.harga),
-        onTap: () {
-          // Navigate to DetailScreen when tapped
-          _navigateToDetailScreen(cateringName);
-        },
-      ),
-    );
+    await loadFavoriteCaterings();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Favorites'),
+        title: Text('Catering Favorit'),
       ),
-      body: ListView.builder(
-        itemCount: favorite.length,
+      body: favoriteCaterings.isEmpty
+          ? Center(
+        child: Text('Tidak ada Menu Catering favorit.'),
+      )
+          : GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+        ),
+        padding: EdgeInsets.all(8.0),
+        itemCount: favoriteCaterings.length,
         itemBuilder: (context, index) {
-          return _buildCateringCard(favorite[index]);
+          Catering catering = favoriteCaterings[index];
+          return GestureDetector(
+            onTap: () {
+            },
+            onLongPress: () {
+              _removeFromFavorites(catering);
+            },
+            child: ItemCard(catering: catering),
+          );
         },
       ),
     );
   }
 }
-
