@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../models/catering.dart';
 import '../screens/detail_screen.dart';
 
